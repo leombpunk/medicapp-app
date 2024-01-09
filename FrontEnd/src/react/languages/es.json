@@ -1,0 +1,10 @@
+{
+    "sidebar": {
+        "options": {
+            "home": "Inicio",
+            "patients": "Pacientes",
+            "schedules": "Agenda",
+            "config": "Configuración"
+        }
+    }
+}

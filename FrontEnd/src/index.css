@@ -1,0 +1,107 @@
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.table-fixed {
+    table-layout: fixed;
+}
+
+.mh-100vh {
+    height: 100vh;
+}
+
+.size-1 {
+    width:  1rem;
+    height: 1rem;
+}
+
+.size-2 {
+    width:  2rem;
+    height: 2rem;
+}
+
+.size-3{
+    width:  3rem;
+    height: 3rem;
+}
+
+.size-4 {
+    width:  4rem;
+    height: 4rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.profesional-card {
+    transition: all 100ms ease-out;
+}
+
+.profesional-card:hover {
+    background-color: lightgray;
+    border-color: black;
+    scale: 1.05;
+}
+
+/* .bg-medicapp {
+    background: transparent;
+    background-image: url('./react/assets/images/logo-black.png');
+    background-repeat: no-repeat;
+    opacity: 5%;
+} */
+
+.bg-medicapp:after {
+    content: url('./react/assets/images/logo-black-mid.png');
+    opacity: 0.08;
+    
+    position: fixed;
+    /* top: 5rem;
+    right: -8rem;
+    bottom: -6rem;
+    left: 0; */
+
+    right: 0;
+    bottom: 0;
+        
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+[data-bs-theme=dark] .bg-medicapp:after {
+    content: url('./react/assets/images/logo-white-mid.png');
+}

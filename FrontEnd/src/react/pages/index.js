@@ -1,0 +1,16 @@
+export { default as Configurations } from './Configurations';
+export { default as ScheduleSetting } from './ScheduleSetting';
+export { default as Home } from './Home';
+export { default as Login } from './Login';
+export { default as NotAllowed } from './NotAllowed';
+export { default as NotFound } from './NotFound';
+export { default as Patient } from './Patient';
+export { default as Turns } from './Turns';
+export { default as PatientsIndex } from './PatientsIndex';
+export { default as Profesional } from './Profesional';
+export { default as ProfesionalStats } from './ProfesionalStats';
+export { default as Register } from './Register';
+export { default as Schedule } from './Schedule';
+export { default as SchedulesIndex } from './SchedulesIndex';
+export { default as TreatmentsIndex } from './TreatmentsIndex';
+export { default as UserPage } from './UserPage';
