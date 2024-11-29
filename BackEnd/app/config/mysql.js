@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv"
 import { Sequelize } from "sequelize"
+import mysql2 from "mysql2"
 
 dotenv.config()
 // Las siguientes datos los extrae de leer el archivo .env
@@ -14,7 +15,8 @@ const sequelize = new Sequelize(
     password,
     {
         host: hostname,
-        dialect: "mysql"
+        dialect: "mysql",
+        dialectModule: mysql2,
     }
 )
 
