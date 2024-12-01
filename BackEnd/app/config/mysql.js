@@ -8,6 +8,8 @@ const hostname = process.env.DB_HOST
 const database = process.env.DB_NAME
 const username = process.env.DB_USER
 const password = process.env.DB_PASS
+//for deploy
+const dbport = process.env.DB_PORT
 
 const sequelize = new Sequelize(
     database,
@@ -15,6 +17,7 @@ const sequelize = new Sequelize(
     password,
     {
         host: hostname,
+        port: dbport, //for deploy
         dialect: "mysql",
         dialectModule: mysql2,
     }
