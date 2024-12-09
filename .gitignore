@@ -37,7 +37,7 @@ package-lock.json*
 
 users.txt
 
-/*.sql
+.sql
 .firebase
 .firebaserc
 firebase.json
