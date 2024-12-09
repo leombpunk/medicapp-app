@@ -39,3 +39,5 @@ users.txt
 
 .sql
 .firebase
+.firebaserc
+firebase.json
