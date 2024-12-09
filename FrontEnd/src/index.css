@@ -77,7 +77,7 @@ input[type=number] {
 } */
 
 .bg-medicapp:after {
-    content: url('./react/assets/images/logo-black-mid.png');
+    content: url('./react/assets/images/medicapp-min-black.png');
     opacity: 0.08;
     
     position: fixed;
@@ -103,5 +103,5 @@ input[type=number] {
 }
 
 [data-bs-theme=dark] .bg-medicapp:after {
-    content: url('./react/assets/images/logo-white-mid.png');
+    content: url('./react/assets/images/medicapp-min-white.png');
 }
