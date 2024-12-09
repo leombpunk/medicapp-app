@@ -1,4 +1,5 @@
-const baseAPI = "http://localhost:3001"
+// const baseAPI = "http://localhost:3001"
+const baseAPI = "https://medicapp-app-api.vercel.app"
 
 const RouteAPI = {
     Login: `${baseAPI}/login`,

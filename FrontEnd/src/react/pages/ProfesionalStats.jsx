@@ -9,6 +9,7 @@ import {
     LineElement,
     Colors
 } from 'chart.js'
+import 'chart.js/auto';
 import { Title } from '../components/basis'
 import { ChartBarIcon } from '@heroicons/react/24/solid'
 import { useProfesional } from '../components/hooks'
@@ -26,7 +27,7 @@ ChartJS.register(
     CategoryScale,
     LinearScale,
     BarElement,
-    Title,
+    // Title,
     Tooltip,
     Legend,
     PointElement,

@@ -115,11 +115,12 @@ const Treatments = ({ isLoading, data }) => {
                         <div className='d-grid' style={{ gridTemplateColumns: '3fr 1fr' }}>
                             <div className='pe-3'>
                                 <Line
+                                    id='treatments-chart'
                                     options={options}
                                     data={{
                                         labels: monthES,
                                         datasets: data.map((row, index) => ({
-                                            id: index,
+                                            id: `treatments-chart-${index}`,
                                             data: row.treatments.map(month => month.total),
                                             label: row.year
                                         }))

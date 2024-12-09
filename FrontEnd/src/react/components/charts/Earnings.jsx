@@ -1,7 +1,7 @@
 import { Line } from 'react-chartjs-2'
 import { useSettingsContext } from '../providers/SettingsProvider'
 import { monthES } from '../../constants/constants'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Loading } from '../basis'
 /*
 const Earnings = ({ isLoading, data }) => {
@@ -118,11 +118,12 @@ const Earnings = ({ isLoading, data }) => {
                         <div className='d-grid' style={{ gridTemplateColumns: '3fr 1fr' }}>
                             <div className='pe-3'>
                                 <Line
+                                    id = "earnings-chart"
                                     options={options}
                                     data={{
                                         labels: monthES,
                                         datasets: data.map((row, index) => ({
-                                            id: index,
+                                            id: `earnings-chart-${index}`,
                                             data: row.earnings.map(month => month.total),
                                             label: row.year
                                         }))
