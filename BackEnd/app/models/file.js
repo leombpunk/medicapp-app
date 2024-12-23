@@ -20,6 +20,10 @@ const File = sequelize.define(
             type: DataTypes.STRING,
             allowNull: true
         },
+        storage: {
+            type: DataTypes.ENUM('local','cloud'),
+            allowNull: false,
+        },
         createdBy: {
             type: DataTypes.INTEGER,
             allowNull: false

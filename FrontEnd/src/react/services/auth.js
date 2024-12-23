@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getToken } from '../constants/token'
-// const baseURL = 'http://localhost:3001'
-const baseURL = 'https://medicapp-app-api.vercel.app'
+const baseURL = 'http://localhost:3001'
+// const baseURL = 'https://medicapp-app-api.vercel.app'
 const authURL = `${baseURL}/auth`
 
 const login = (credentials) => {
