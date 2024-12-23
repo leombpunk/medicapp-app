@@ -34,4 +34,14 @@ const helperImage = async (filepath, filename, size = 300) => {
     return await sharp(filepath).resize(size).toFile(`${pathThumbnail}/${filename}`)
 }
 
-export { helperImage }
+const deleteImage = (pathFile, pathThumbnail) => {
+    if (fs.existsSync(pathFile)) {
+        fs.unlinkSync(pathFile)
+    }
+
+    if (fs.existsSync(pathThumbnail)) {
+        fs.unlinkSync(pathThumbnail)
+    }
+}
+
+export { helperImage, deleteImage }
