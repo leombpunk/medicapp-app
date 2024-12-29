@@ -233,41 +233,48 @@ const createFile = async (request, response) => {
   }
 }
 
+//actualizacion de archivos lista
 const updateFile = async (request, response) => {
   try {
-    const { id } = request.params
-    const { body, file } = request
-    const filename = file?.filename
-    const { name, description } = body
     const accessToken = await getTokenFromRequest(request)
     const modifiedBy = accessToken.id
-
-    // Save thumbnail (miniatura) para imagenes
-    const type = file?.mimetype.split("/")[0] === "image" ? "image" : undefined
-    if (type === "image") {
-      helperImage(file.path, file.filename)
-    }
+    const { id } = request.params
+    const { body, file } = request
+    const { name, description } = body
+    let filename = file?.filename
 
     const filedb = await File.findOne({ where: { id } })
 
     if (!filedb) {
       handleResponse(response, 404, "File is not found or does not exist")
       return
+    } else {
+      if (cloudStorage === "cloud") {
+        const fileResult = await new Promise((resolve) => {
+          cloudinary.uploader
+            .upload_stream({ folder: "medicapp", public_id: filedb.name }, (error, uploadResult) => {
+              return resolve(uploadResult)
+            })
+            .end(file.buffer)
+        })
+        console.log({ fileResult })
+        filename = fileResult.public_id.split("/").pop()
+      } else {
+        // Save thumbnail (miniatura) para imagenes
+        const type = file?.mimetype.split("/")[0] === "image" ? "image" : undefined
+        if (type === "image") {
+          helperImage(file.path, file.filename)
+        }
+
+      }
+      await filedb.update({ name, filename, description, modifiedBy })
+      handleResponse(response, 200, "File updated successfully", filedb)
+      return
     }
-
-    await filedb.update({ name, filename, description, modifiedBy })
-
-    const status = 200
-    const message = "File updated successfully"
-    handleResponse(response, status, message, filedb)
-    return
   } catch (error) {
     const errorNumber = Number(error?.original?.errno)
     if (errorNumber === 1062) {
-      const httpStatus = 409
-      const status = 1062
-      const message = "Name duplicate"
-      handleResponseCustomStatus(response, httpStatus, status, message)
+      handleResponseCustomStatus(response, 409, 1062, "Name duplicate")
       return
     }
 
@@ -275,39 +282,44 @@ const updateFile = async (request, response) => {
   }
 }
 
+//eliimnar archivo listo
 const deleteFile = async (request, response) => {
   try {
+    const prefix = 'medicapp/'
     const { id } = request.params
 
     const file = await File.findOne({ where: { id } })
 
     if (!file) {
-      const status = 200
-      const message = "File is not found or does not exist"
-      handleResponse(response, status, message)
+      handleResponse(response, 200, "File is not found or does not exist")
+      return
+    } else {
+      //verificar el campo storage para eliminar el archivo (local, cloud)
+      if (cloudStorage === "cloud") {
+        //esto se puede mejorar
+        const result = await cloudinary.uploader.destroy(prefix.concat(file.filename))
+        console.log({ result })
+      } else {
+        const filename = file?.filename
+        const pathStorage = getStoragePath()
+        const pathFile = `${pathStorage}/${filename}`
+        const pathThumbnail = `${pathStorage}/thumbnail/${filename}`
+    
+        if (fs.existsSync(pathFile)) {
+          fs.unlinkSync(pathFile)
+        }
+    
+        if (fs.existsSync(pathThumbnail)) {
+          fs.unlinkSync(pathThumbnail)
+        }
+      }
+      await file.destroy()
+      handleResponse(response, 200, "File deleted successfully")
       return
     }
-    //verificar el campo storage para eliminar el archivo (local, cloud)
-    const filename = file?.filename
-    const pathStorage = getStoragePath()
-    const pathFile = `${pathStorage}/${filename}`
-    const pathThumbnail = `${pathStorage}/thumbnail/${filename}`
-
-    await file.destroy()
-
-    if (fs.existsSync(pathFile)) {
-      fs.unlinkSync(pathFile)
-    }
-
-    if (fs.existsSync(pathThumbnail)) {
-      fs.unlinkSync(pathThumbnail)
-    }
-
-    const status = 200
-    const message = "File deleted successfully"
-    handleResponse(response, status, message)
   } catch (error) {
     httpError(response, error)
+    return 
   }
 }
 
