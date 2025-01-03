@@ -13,6 +13,7 @@ const useFile = (idPatient, type) => {
     const [order, setOrder] = useState({column: "id", direction: "DESC"})
     const [search, setSearch] = useState('')
 
+    //de momento esto esta al pedo
     const addFileURL = async (file, urlToDownload) => {
         setFiles(files.map(f => f.id === file.id ? {...f, url: urlToDownload} : f))
     }

@@ -10,14 +10,14 @@ const Image = ({ photo, columns, handleOnPress }) => {
         try {
             console.log({ photo })
             const response = await fileServices.getThumbnail(photo)
-            console.log({ response })
+            // console.log({ response })
 
             if (response.status === 200) {
                 if (photo.storage === 'cloud') {
                     setImage(response.data.data)
                 } else {
                     const img = URL.createObjectURL(response.data)
-                    console.log({img})
+                    // console.log({img})
                     setImage(img)
                 }
             }

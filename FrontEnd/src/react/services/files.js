@@ -103,7 +103,6 @@ const getFile = async (file) => {
             Authorization: token
         }
     })
-    console.log({request})
     fileDownload(file.storage === 'cloud' ? request.data.data : request.data, file.name)
 }
 
