@@ -107,13 +107,38 @@ const Modal = ({ show, title, image, children, handleClose }) => {
 
 const FileModalPreview = ({ modalShow, handleModalClose, handleDownload, handleEdit, handleDelete, data }) => {
     const [image, setImage] = useState(undefined)
+    console.log({data})
+
+    const handleSaveFile = async (event) => {
+        event.preventDefault()
+        // Get file name from url.
+        var filename = data?.name;
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function() {
+            var a = document.createElement('a');
+            a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+            a.download = filename; // Set the file name.
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            // delete a;
+        };
+        xhr.open('GET', image);
+        xhr.send();
+    }
 
     useEffect(() => {
         const getPhoto = async () => {
             try {
+                console.log({ data })
                 const response = await fileServices.getPhoto(data)
                 if (response.status === 200) {
-                    setImage(URL.createObjectURL(response.data))
+                    if (data.storage === 'cloud') {
+                        setImage(response.data.data)
+                    } else {
+                        setImage(URL.createObjectURL(response.data))
+                    }
                 }
             } catch (error) {
                 console.log(error)
@@ -145,12 +170,25 @@ const FileModalPreview = ({ modalShow, handleModalClose, handleDownload, handleE
                 </div>
 
                 <div className='d-flex gap-2 justify-content-end'>
-                    <Button
-                        className='btn-outline-system'
-                        Icon={ArrowDownTrayIcon}
-                        text='Descargar'
-                        handleOnClick={handleDownload}
-                    />
+                    {/* {
+                        data?.storage === 'cloud' ? 
+                            <a 
+                                className={`btn d-flex justify-content-center align-items-center gap-1 text-truncate btn-outline-system`} 
+                                alt='Descargar' 
+                                href={image} 
+                                download={data?.name}
+                                // target='_blank'
+                                // rel='noreferrer'
+                            >
+                                <ArrowDownTrayIcon style={{ width: '1.25rem', height: '1.25rem' }}/> Descargar
+                            </a> : */}
+                            <Button
+                                className='btn-outline-system'
+                                Icon={ArrowDownTrayIcon}
+                                text='Descargar'
+                                handleOnClick={data?.storage === 'cloud' ? handleSaveFile : handleDownload}
+                            />
+                    {/* } */}
 
                     <Button
                         className='btn-outline-system'

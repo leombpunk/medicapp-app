@@ -13,8 +13,13 @@ const Image = ({ photo, columns, handleOnPress }) => {
             console.log({ response })
 
             if (response.status === 200) {
-                const img = URL.createObjectURL(response.data)
-                setImage(img)
+                if (photo.storage === 'cloud') {
+                    setImage(response.data.data)
+                } else {
+                    const img = URL.createObjectURL(response.data)
+                    console.log({img})
+                    setImage(img)
+                }
             }
         } catch (error) {
             console.log(error)
@@ -51,7 +56,7 @@ const Image = ({ photo, columns, handleOnPress }) => {
     )
 }
 
-const ImagesViewer = ({ items, columns, height, handleOnPress }) => {
+const ImagesViewer = ({ items, columns, height, handleOnPress, addFileURL }) => {
     return (
         <div className='card w-100' style={{ height, background: 'rgba(0,0,0,0.05)' }}>
             {
@@ -65,6 +70,7 @@ const ImagesViewer = ({ items, columns, height, handleOnPress }) => {
                                 photo={photo}
                                 columns={columns}
                                 handleOnPress={() => handleOnPress(photo)}
+                                addFileURL={addFileURL}
                             />
                         )
                     }

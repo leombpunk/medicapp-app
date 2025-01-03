@@ -13,6 +13,10 @@ const useFile = (idPatient, type) => {
     const [order, setOrder] = useState({column: "id", direction: "DESC"})
     const [search, setSearch] = useState('')
 
+    const addFileURL = async (file, urlToDownload) => {
+        setFiles(files.map(f => f.id === file.id ? {...f, url: urlToDownload} : f))
+    }
+
     const handleSearch = (value) => {
         setSearch(value)
         setPage(1)
@@ -126,6 +130,7 @@ const useFile = (idPatient, type) => {
         page,
         totalPages,
         order,
+        addFileURL,
         createFile,
         editFile,
         deleteFile,

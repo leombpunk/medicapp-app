@@ -5,9 +5,10 @@ import fileServices from '../../../services/files'
 const useFileModalPreview = () => {
     const { show, handleOpen, handleClose } = useModal()
     const [data, setData] = useState(undefined)
-
-    const handleDownload = () => {
-        return fileServices.getFile(data)
+    
+    console.log({data})
+    const handleDownload = async () => {
+        return await fileServices.getFile(data)
     }
 
     const handleOpenModalPreview = (data) => {

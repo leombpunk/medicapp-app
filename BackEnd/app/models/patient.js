@@ -110,14 +110,14 @@ Patient.getPage = async ({ search, page, order, idProfesional, idTreatment }) =>
     }
 }
 
-Patient.getFilePage = async (idPatient, search, page, order) => {
+Patient.getFilePage = async (idPatient, search, page, order, storage) => {
     const limit = 10
     const offset = limit * (page ? page : 0)
     
     const { count, rows } = await File.findAndCountAll({
         offset,
         limit,
-        where: { name: { [Op.like]: `%${search}%` } ,idPatient, type: { [Op.not]: 'image' } },
+        where: { name: { [Op.like]: `%${search}%` } ,idPatient, type: { [Op.not]: 'image' }, storage },
         order: [ order ]
     })
 
@@ -127,7 +127,7 @@ Patient.getFilePage = async (idPatient, search, page, order) => {
     }
 }
 
-Patient.getPhotoPage = async (idPatient, search, page, order) => {
+Patient.getPhotoPage = async (idPatient, search, page, order, storage) => {
     const limit = 10
     const offset = limit * (page ? page : 0)
     const type = 'image'
@@ -135,7 +135,7 @@ Patient.getPhotoPage = async (idPatient, search, page, order) => {
     const { count, rows } = await File.findAndCountAll({
         offset,
         limit,
-        where: { name: { [Op.like]: `%${search}%` }, idPatient, type },
+        where: { name: { [Op.like]: `%${search}%` }, idPatient, type, storage },
         order: [ order ]
     })
 

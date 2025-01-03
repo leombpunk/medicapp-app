@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv'
 import { getTokenFromRequest } from '../helpers/generateToken.js'
 import { httpError } from '../helpers/handleErrors.js'
 import { handleResponse, handleResponseCustomStatus } from '../helpers/handleResponse.js'
@@ -5,6 +6,10 @@ import Note from '../models/note.js'
 import Patient from '../models/patient.js'
 import Treatment from '../models/treatment.js'
 import Turn from '../models/turn.js'
+
+dotenv.config()
+
+const cloudStorage = process.env.CLOUD_STORAGE === "1" ? "cloud" : "local"
 
 const getPatients = async (request, response) => {
     try {
@@ -211,7 +216,7 @@ const getPatientFiles = async (request, response) => {
         const idPatient = request.params.id
         const { search, page, orderColumn, orderDirection } = request.query
         const order = orderColumn ? [orderColumn, orderDirection ? orderDirection : 'ASC'] : ['id', 'ASC']
-        const result = await Patient.getFilePage(idPatient, search ? search : '', page ? page - 1 : 0, order)
+        const result = await Patient.getFilePage(idPatient, search ? search : '', page ? page - 1 : 0, order, cloudStorage)
 
         const status = 200
         const message = ''
@@ -227,7 +232,7 @@ const getPatientPhotos = async (request, response) => {
         const idPatient = request.params.id
         const { search, page, orderColumn, orderDirection } = request.query
         const order = orderColumn ? [orderColumn, orderDirection ? orderDirection : 'ASC'] : ['id', 'ASC']
-        const result = await Patient.getPhotoPage(idPatient, search ? search : '', page ? page - 1 : 0, order)
+        const result = await Patient.getPhotoPage(idPatient, search ? search : '', page ? page - 1 : 0, order, cloudStorage)
 
         const status = 200
         const message = ''

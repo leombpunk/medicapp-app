@@ -125,19 +125,28 @@ console.log("cloudStorage", cloudStorage)
 const getFile = async (request, response) => {
   try {
     const filename = request.params.filename
-    const file = await File.findOne({ where: { filename } })
+    const file = await File.findOne({ where: { filename, storage: cloudStorage } })
     let pathFile = ""
     //verificar si es local o cloud para devolver la url
-    if (cloudStorage === "cloud") {
-      const dataFile = await cloudinary.api.resource(file.filename)
-      pathFile = dataFile.secure_url
+    if (file) {
+      if (cloudStorage === "cloud") {
+        const dataFile = await cloudinary.api.resource('medicapp'.concat('/',file.filename))
+        pathFile = dataFile.secure_url
+        handleResponse(response, 200, "File found", pathFile)
+        return
+      } else {
+        const pathStorage = getStoragePath()
+        pathFile = `${pathStorage}/${file.filename}`
+        response.status(200)
+        response.sendFile(pathFile)
+        return
+      }
+
     } else {
-      const pathStorage = getStoragePath()
-      pathFile = `${pathStorage}/${file.filename}`
+      handleResponse(response, 404, "File is not found or does not exist")
+      return
     }
 
-    response.status(200)
-    response.sendFile(pathFile)
   } catch (error) {
     httpError(response, error)
   }
@@ -146,19 +155,29 @@ const getFile = async (request, response) => {
 const getThumbnail = async (request, response) => {
   try {
     const filename = request.params.filename
-    const file = await File.findOne({ where: { filename } })
+    const file = await File.findOne({ where: { filename, storage: cloudStorage } })
     let pathFile = ""
     //verificar si es local o cloud para devolver la url
-    if (cloudStorage === "cloud") {
-      const dataFile = await cloudinary.api.resource(file.filename)
-      pathFile = dataFile.derived[0].secure_url
+    if (file) {
+      if (cloudStorage === "cloud") {
+        const dataFile = await cloudinary.api.resource('medicapp'.concat('/',file.filename))
+        console.log({dataFile})
+        pathFile = dataFile.secure_url
+        // response.status(200)
+        // response.sendFile(pathFile)
+        handleResponse(response, 200, "File found", pathFile)
+        return
+      } else {
+        const pathStorage = getStoragePath()
+        pathFile = `${pathStorage}/thumbnail/${file.filename}`
+        response.status(200)
+        response.sendFile(pathFile)
+        return
+      }
     } else {
-      const pathStorage = getStoragePath()
-      pathFile = `${pathStorage}/thumbnail/${file.filename}`
+      handleResponse(response, 404, "File is not found or does not exist")
+      return
     }
-
-    response.status(200)
-    response.sendFile(pathFile)
   } catch (error) {
     httpError(response, error)
   }

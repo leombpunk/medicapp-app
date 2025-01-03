@@ -98,12 +98,13 @@ const getFile = async (file) => {
     const request = await axios({
         url: url,
         method: 'GET',
-        responseType: 'blob',
+        responseType: file.storage === 'cloud' ? 'json' :'blob',
         headers: {
             Authorization: token
         }
     })
-    fileDownload(request.data, file.name)
+    console.log({request})
+    fileDownload(file.storage === 'cloud' ? request.data.data : request.data, file.name)
 }
 
 const getPhoto = (photo) => {
@@ -113,7 +114,7 @@ const getPhoto = (photo) => {
     const request = axios({
         url: url,
         method: 'GET',
-        responseType: 'blob',
+        responseType: photo.storage === 'cloud' ? 'json' :'blob',
         headers: {
             Authorization: token
         }
@@ -129,7 +130,7 @@ const getThumbnail = (photo) => {
     const request = axios({
         url: url,
         method: 'GET',
-        responseType: 'blob',
+        responseType: photo.storage === 'cloud' ? 'json' :'blob',
         headers: {
             Authorization: token
         }
