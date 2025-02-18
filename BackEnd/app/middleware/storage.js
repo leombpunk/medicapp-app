@@ -82,7 +82,7 @@ const fileFilter = (req, file, cb) => {
     console.log(error)
     cb(
       new Error(
-        "Solo se aceptan imagenes en los formatos: [.png, .jpeg, .gif, .webp, .doc, .xls, .pdf, .odt, .ods]"
+        "Solo se aceptan imagenes en los formatos: [.png, .jpeg, .gif, .webp, .doc, .xls, .pdf, .odt, .ods, .docx, .xlsx]"
       )
     )
   }

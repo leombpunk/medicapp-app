@@ -189,12 +189,17 @@ const createFile = async (request, response) => {
     const accessToken = await getTokenFromRequest(request)
     const createdBy = accessToken.id
     const { body, file } = request
+    // console.log({file: file})
+    if (file === undefined) {
+      handleResponse(response, 400, "File don't support or don't exist")
+      return
+    }
     const { name, description, idPatient } = body
     let filename = file.filename
-
     const type = file.mimetype.split("/")[0] === "image" ? "image" : undefined
 
     const existingFile = await File.findOne({ where: { name, idPatient } })
+
 
     if (existingFile) {
       if (cloudStorage === "local") {
@@ -211,6 +216,9 @@ const createFile = async (request, response) => {
         fileResult = await new Promise((resolve) => {
           cloudinary.uploader
             .upload_stream({ folder: "medicapp" }, (error, uploadResult) => {
+              if (error) {
+                console.log({cloudinaryErr: error})
+              }
               return resolve(uploadResult)
             })
             .end(file.buffer)

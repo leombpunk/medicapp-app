@@ -81,6 +81,9 @@ const useFileModal = (idPatient, handleCreateFile, handleEditFile, handleDeleteF
                     //setValue('description', file.description)
                     addNotification('Ya existe un documento o fotografía con el mismo nombre de archivo.', 'danger')
                 }
+                if (result.status === 400) {
+                    addNotification('El formato del archivo no es soportado.', 'danger')
+                }
             }
             /* Edit */
             if (mode === MODALMODES.Edit) {
