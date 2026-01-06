@@ -9,13 +9,13 @@ const checkCoherence = async (request, response, next) => {
         if (tokenData.id === data.id) {
             next()
         } else {
-            response.status(401)
+            response.status(401) //deberia ser un 409, el usuario no tiene permisos
             response.send({ error: 'You do not have permissions to perform this operation' })
         }
     } catch (error) {
         console.log('/* checkCoherence middleware */')
         console.log(error)
-        response.status(401)
+        response.status(401) //deberia ser un 409, el usuario no tiene permisos
         response.send({ error: 'You do not have permissions to perform this operation' })
     }
 }

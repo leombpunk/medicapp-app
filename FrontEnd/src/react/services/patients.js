@@ -1,4 +1,3 @@
-import axios from "axios"
 import { RouteAPI } from "../constants/RoutesAPI"
 import { getToken } from "../constants/token"
 
@@ -62,21 +61,6 @@ const getPatient = async (id) => {
 }
 
 const getPatientByDNI = async (dni) => {
-    /*
-    const token = getToken()
-    
-    const config = {
-        headers: {
-            Authorization: token
-        }
-    }
-    
-    const url = `${RouteAPI.Patients}/dni/${dni}`
-    const response = await axios.get(url, config)
-    const data = await response.json()
-    return data
-    */
-
     const token = getToken()
     
     const config = {

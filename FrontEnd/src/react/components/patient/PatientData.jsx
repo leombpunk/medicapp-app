@@ -5,7 +5,7 @@ import { InputV2, Title } from '../basis'
 import { useForm } from 'react-hook-form'
 import { useNotificationsContext } from '../providers/NotificationsProvider'
 import { yupResolver } from "@hookform/resolvers/yup"
-import { schemaPatient, schemaPatientEdit } from "../../constants/schemasValidations"
+import { schemaPatientEdit } from "../../constants/schemasValidations"
 
 const getYearsOlds = (birthdate) => {
     const ageDifferent = Date.now() - new Date(birthdate).getTime()

@@ -18,4 +18,4 @@ const RouteAPI = {
     Treatments: `${baseAPI}/treatments`,
 }
 
-export { RouteAPI }
+export { baseAPI, RouteAPI }

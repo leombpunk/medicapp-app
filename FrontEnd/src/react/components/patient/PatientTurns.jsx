@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const PatientTurns = ({ patient }) => {
     const idPatient = patient?.id
 
-    const { isLoading, turns } = usePatientTurns({
+    const { turns } = usePatientTurns({
         idPatient,
         rows: 5,
         rowOrder: { dateTime: 'ASC' },

@@ -9,7 +9,7 @@ const useFileModal = (idPatient, handleCreateFile, handleEditFile, handleDeleteF
     const { addNotification } = useNotificationsContext()
     const { user } = useUserContext()
     const { show, handleOpen, handleClose } = useModal()
-    const { register, formState: { errors }, reset, setValue, handleSubmit, getValues } = useForm()
+    const { register, formState: { errors }, reset, handleSubmit, getValues } = useForm()
     const [mode, setMode] = useState(MODALMODES.Add)
     const [loading, setLoading] = useState(false)
 

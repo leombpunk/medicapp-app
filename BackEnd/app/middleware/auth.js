@@ -100,7 +100,7 @@ const checkUser = async (request, response, next) => {
         //console.log(tokenData.role.id === USER_ROLES.User, idUser !== tokenData.id, tokenData.role.id === USER_ROLES.User && idUser !== tokenData.id)
         //if((tokenData.role.id !== USER_ROLES.Admin) || (tokenData.role.id === USER_ROLES.User && idUser !== tokenData.id)) {
         if((tokenData.role.id !== USER_ROLES.Admin && idUser !== tokenData.id)) {
-            const status = 401
+            const status = 401 //deberia ser un 409, el usuario no tiene permisos
             const message = "You do not have permissions to perform this operation"
             handleResponse(response, status, message)
             return

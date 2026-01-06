@@ -1,6 +1,6 @@
 {
     "name": "medicapp",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "@fontsource/ubuntu": "4.5.11",

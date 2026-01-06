@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import userServices from "../../services/auth";
+// import userServices from "../../services/auth";
 
 const userContext = createContext()
 
@@ -19,15 +19,15 @@ const UserProvider = ({children}) => {
         setUser(undefined)
     }
 
-    const handleUpdateLogin = async () => {
-        try {
-            const request = await userServices(user)
-            setUser(user)
-            localStorage.setItem('medicappLoggedUser', JSON.stringify(user))
-        } catch (error) {
-            return error.response
-        }
-    }
+    // const handleUpdateLogin = async () => {
+    //     try {
+    //         const request = await userServices(user)
+    //         setUser(user)
+    //         localStorage.setItem('medicappLoggedUser', JSON.stringify(user))
+    //     } catch (error) {
+    //         return error.response
+    //     }
+    // }
 
     const medicappLoggedUser = localStorage.getItem('medicappLoggedUser')
 

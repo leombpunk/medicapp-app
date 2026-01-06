@@ -66,9 +66,9 @@ const localeStringDateTime = {
     timeZoneName: "short"
 }
 
-const sortsObjects = (objects, atribute, order) => {
-    return objects.sort((a, b) => (a[atribute] > b[atribute]) ? 1 * order : (a[atribute] < b[atribute]) ? -1 * order : 0)
-}
+// const sortsObjects = (objects, atribute, order) => {
+//     return objects.sort((a, b) => (a[atribute] > b[atribute]) ? 1 * order : (a[atribute] < b[atribute]) ? -1 * order : 0)
+// }
 
 const getStringDateInTimeZone = (date, timeZone) => {
     const [ month, day, year ] = date.toLocaleString("en-EN", { year: "numeric", month: "2-digit", day:"2-digit", timeZone: timeZone.string }).split("/")

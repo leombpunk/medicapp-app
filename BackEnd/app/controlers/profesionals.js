@@ -174,7 +174,7 @@ const saveProfesionalScheduleConfig = async (request, response) => {
         const { worktimes } = request.body
 
         if (worktimes.length === 0) {
-            const status = 401
+            const status = 401 //no es un 401, deberia ser 200 o 204
             const message = 'Worktimes list is empty'
             handleResponse(response, status, message)
             return
@@ -185,7 +185,7 @@ const saveProfesionalScheduleConfig = async (request, response) => {
 
             if (getSecondsOfTime(worktime.startTime) >= getSecondsOfTime(worktime.endTime)) {
                 console.log(worktime)
-                const status = 401
+                const status = 401 //seria un 400, porque el usuario pasa mal la info
                 const message = "startTime can'be greater than or equal to endTime"
                 handleResponse(response, status, message)
                 return
@@ -194,7 +194,7 @@ const saveProfesionalScheduleConfig = async (request, response) => {
             const filterList = worktimes.filter((_, i) => i !== index)
 
             if (checkCollapse(filterList, worktime)) {
-                const status = 401
+                const status = 401 //seria un 400, porque el usuario pasa mal la info
                 const message = 'Worktimes collapse'
                 handleResponse(response, status, message)
                 return

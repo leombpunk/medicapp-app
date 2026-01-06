@@ -4,7 +4,7 @@ import patientServices from '../../services/patients'
 const usePatientTreatments = (idPatient) => {
     const [loading, setLoading] = useState(false)
     const [treatments, setTreatments] = useState([])
-    const [order, setOrder] = useState({ column: 'id', direction: 'DESC' })
+    const [order] = useState({ column: 'id', direction: 'DESC' })
 
     const getPatientTreatments = async () => {
         try {

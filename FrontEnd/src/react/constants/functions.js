@@ -58,19 +58,19 @@ const isTheSameDate = (dateOne, dateTwo) => {
     )
 }
 
-const getYears = () => {
-    const now = new Date(Date.now())
-    const firstYear = 1950
-    const lastYear = now.getUTCFullYear()
+// const getYears = () => {
+//     const now = new Date(Date.now())
+//     const firstYear = 1950
+//     const lastYear = now.getUTCFullYear()
     
-    const years = []
+//     const years = []
 
-    for (let index = firstYear; index <= lastYear; index++) {
-        years.push(index)
-    }
+//     for (let index = firstYear; index <= lastYear; index++) {
+//         years.push(index)
+//     }
 
-    return years.sort((a, b) => a > b ? -1 : 1)
-}
+//     return years.sort((a, b) => a > b ? -1 : 1)
+// }
 
 const getMonthsInYear = (year) => {
     return [

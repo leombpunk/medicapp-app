@@ -1,5 +1,5 @@
-import { CheckIcon, TrashIcon, UserCircleIcon } from '@heroicons/react/24/outline'
-import { Button, Input, Title } from '../basis'
+import { /*CheckIcon, TrashIcon,*/ UserCircleIcon } from '@heroicons/react/24/outline'
+import { /*Button,*/ Input, Title } from '../basis'
 
 const ProfesionalData = ({ profesional }) => {
     return (
