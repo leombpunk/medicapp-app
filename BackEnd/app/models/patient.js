@@ -1,5 +1,5 @@
 import { DataTypes, Op, Sequelize } from "sequelize"
-import { sequelize } from "../config/mysql.js"
+import { sequelize } from "../config/db.js"
 import File from "./file.js"
 import Note from "./note.js"
 

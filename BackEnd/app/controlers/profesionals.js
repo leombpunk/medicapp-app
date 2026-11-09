@@ -1,5 +1,5 @@
 import { Op } from 'sequelize'
-import { sequelize } from '../config/mysql.js'
+import { sequelize } from '../config/db.js'
 import { TURN_STATUS } from '../constants/turnstatus.js'
 import { httpError } from '../helpers/handleErrors.js'
 import { handleResponse, handleResponseCustomStatus } from '../helpers/handleResponse.js'

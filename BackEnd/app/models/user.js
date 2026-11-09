@@ -1,5 +1,5 @@
 import { DataTypes, Op, Sequelize } from "sequelize"
-import { sequelize } from "../config/mysql.js"
+import { sequelize } from "../config/db.js"
 import Charge from "./charge.js"
 import Exception from "./exception.js"
 import Role from "./role.js"

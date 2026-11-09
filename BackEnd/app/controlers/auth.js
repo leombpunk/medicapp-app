@@ -188,4 +188,8 @@ const resetPassword = async(request, response) => {
     }
 }
 
-export { loginCtrl, registerCtrl, updateCtrl, resetPassword }
+// const checkLogin = async (request, response) => {
+//     handleResponse(response, 200, 'OK')
+// }
+
+export { loginCtrl, registerCtrl, updateCtrl, resetPassword/*, checkLogin*/ }

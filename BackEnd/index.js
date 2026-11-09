@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import router from './app/routes/index.js'
-import { dbConnectSQL } from './app/config/mysql.js'
+import { dbConnectSQL } from './app/config/db.js'
 
 dotenv.config()
 

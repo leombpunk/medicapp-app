@@ -1,5 +1,5 @@
 import { DataTypes, Sequelize, Op } from "sequelize"
-import { sequelize } from "../config/mysql.js"
+import { sequelize } from "../config/db.js"
 
 const Charge = sequelize.define(
     "charges",

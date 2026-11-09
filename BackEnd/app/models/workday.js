@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize"
-import { sequelize } from "../config/mysql.js"
+import { sequelize } from "../config/db.js"
 import Worktime from "./worktimes.js"
 import Day from "./day.js"
 
