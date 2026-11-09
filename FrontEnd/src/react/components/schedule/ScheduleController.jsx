@@ -51,9 +51,9 @@ function ScheduleController({ profesional, initialDate }) {
 
     return (
         <>
-            <div className='flex-grow-1 d-flex gap-3' style={{ maxHeight: 'calc(100vh - 3rem - 1.5rem - 36px)', height: 'calc(100vh - 3rem - 1.5rem - 36px)' }}>
+            <div className='flex-grow-1 d-flex flex-column flex-lg-row gap-3 schedule-layout'>
 
-                <div className='d-flex flex-column gap-3' style={{ maxWidth: '33%' }}>
+                <div className='d-flex flex-column gap-3 schedule-side'>
                     
                     <ScheduleCalendar currentDate={date} goToDate={goToDate}/>
                     {

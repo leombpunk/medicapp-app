@@ -1,0 +1,85 @@
+:root {
+    --sidebar-width: 15rem;
+}
+
+/* ================= Breakpoints de Bootstrap (mobile-first) =================
+   sm >= 576px | md >= 768px | lg >= 992px | xl >= 1200px
+   Los estilos por breakpoint de este proyecto se agregan aquí, en vez de
+   sprinklings de `style={{...}}` inline en los componentes.
+   ========================================================================== */
+
+/* --- < md: tablas de listados (TableV2 + .table-overflow) -------------------
+   Desactivado: el patrón «cards en mobile» (RESPONSIVE-GUIDE.md §6) reemplazó
+   al truco de scroll. La regla `min-width: 45rem` fue retirada al activar el
+   patrón: la tabla solo se muestra desde >= md, por lo que el thead vuelve a
+   acompañar sin scroll horizontal y el riesgo de columnas comprimidas
+   desaparece en pantallas chicas. */
+
+/* --- Agenda (ScheduleController) -------------------------------------------
+   En < lg el layout se apila (calendario arriba, grilla abajo) y el
+   contenido fluye dentro del scroll de la página. Los altos fijos de
+   viewport quedan reservados a escritorio (>= lg), donde el layout es
+   de 2 columnas. */
+.schedule-side {
+    max-width: 100%;
+}
+
+@media (min-width: 992px) {
+    .schedule-layout {
+        height: calc(100vh - 3rem - 1.5rem - 36px);
+        max-height: calc(100vh - 3rem - 1.5rem - 36px);
+    }
+
+    .schedule-side {
+        max-width: 33%;
+    }
+}
+
+/* --- Anchos/gaps fijos menores: valores de escritorio como base ----
+   (antes inline en los componentes; los valores < sm se reducen para
+   no consumir ancho en pantallas chicas) */
+.turn-date-column {
+    width: 100px;               /* columna de fecha del turno (TurnsList) */
+}
+
+.schedule-setting-row {
+    gap: 3rem;                  /* reemplaza a la utilidad `gap-5` */
+}
+
+.schedule-setting-day-label {
+    width: 6rem;                /* etiqueta del día (ScheduleSetting) */
+}
+
+.select-day-button {
+    min-width: 8rem;            /* toggle de días / botón "+" (SelectDays, SelectTimes) */
+}
+
+@media (max-width: 575.98px) {
+    .turn-date-column {
+        width: 4.5rem;
+    }
+
+    .schedule-setting-row {
+        gap: 1rem;
+    }
+
+    .schedule-setting-day-label {
+        width: 3.5rem;
+    }
+
+    .select-day-button {
+        min-width: 0;
+    }
+
+    .button-96 {
+        width: 7rem;            /* chips de días: 10rem desborda en móviles */
+    }
+}
+
+/* Consolidada desde App.css: era la única media query del proyecto */
+@media (max-width: 1550px) {
+    .button-96 {
+        width: 8.5rem;
+    }
+}
+

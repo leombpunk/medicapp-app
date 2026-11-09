@@ -18,7 +18,7 @@ const Login = () => {
             <div className='d-flex'>
                 <div
                     className='d-flex justify-content-center align-items-center card'
-                    style={{ width: '500px', height: '100vh', borderWidth: 0, borderRadius: 0 }}
+                    style={{ width: '100%', maxWidth: '500px', height: '100vh', borderWidth: 0, borderRadius: 0 }}
                 >
                     {
                         !mode

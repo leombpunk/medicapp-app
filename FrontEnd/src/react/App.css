@@ -64,6 +64,20 @@ a {
     color: black;
 }
 
+/* Variante adaptada al tema: usa variables de Bootstrap, por lo que cambia
+   automáticamente entre tema claro y oscuro (data-bs-theme). */
+.sidebar-toggle {
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+    background: transparent;
+}
+
+.sidebar-toggle:hover {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+}
+
 /* --- Square Button --- */
 /* --- Circle Button --- */
 .circle-button {
@@ -469,11 +483,6 @@ a {
     width: 10rem;
 }
 
-@media (max-width: 1550px) {
-    .button-96 {
-        width: 8.5rem;
-    }
-}
 /*
 .btn-simple {
     --bs-btn-color: var(--bs-body-color);

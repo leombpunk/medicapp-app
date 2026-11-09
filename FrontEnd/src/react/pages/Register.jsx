@@ -19,7 +19,7 @@ const Register = () => {
     return (
         <>
              <div className='d-flex'>
-                <div className='d-flex justify-content-center align-items-center card border' style={{ width: '400px', height: '100vh', borderWidth: 0, borderRadius: 0 }}>
+                <div className='d-flex justify-content-center align-items-center card border' style={{ width: '100%', maxWidth: '400px', height: '100vh', borderWidth: 0, borderRadius: 0 }}>
                 
                     <div className='d-flex flex-column gap-4'>
 

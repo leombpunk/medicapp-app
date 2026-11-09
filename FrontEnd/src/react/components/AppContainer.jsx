@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { SidebarProvider } from './providers/SidebarProvider'
 import Sidebar from './Sidebar'
+import SidebarMobile from './SidebarMobile'
 
 const AppContainer = () => {
     return (
@@ -9,6 +10,7 @@ const AppContainer = () => {
                 <div className='d-flex'>
                     <Sidebar/>
                     <div className='w-100 vh-100' style={{ overflowY: 'auto' }}>
+                        <SidebarMobile/>
                         <div className='container my-4'>
                             <Outlet/>
                         </div>

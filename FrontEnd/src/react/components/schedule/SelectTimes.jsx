@@ -43,7 +43,7 @@ function SelectTimes({workdays, deleteTimeSlot}) {
                                 </>
                                 : null
                             }
-                            <button className='btn btn-outline-dark' style={{minWidth: '8rem', visibility: day.enabled ? 'inherit' : 'hidden' }} onClick={handleOpenModal}> + </button>
+                            <button className='btn btn-outline-dark select-day-button' style={{ visibility: day.enabled ? 'inherit' : 'hidden' }} onClick={handleOpenModal}> + </button>
                         </div>
                     )
                 }

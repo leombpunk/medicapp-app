@@ -24,7 +24,7 @@ const ModalTemplate = ({ title, children, show, handleClose, contentStyle, modal
                 <>
                     <div className='fade modal-backdrop show'></div>
                     <div className='fade modal show d-block' tabIndex='-1'>
-                        <div role='dialog' className={`modal-dialog modal-dialog-centered ${modalSize}`}>
+                        <div role='dialog' className={`modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down ${modalSize}`}>
                             <div className='modal-content' style={contentStyle}>
                                 <div className='modal-body'>
                                     <div className='mb-3 d-flex align-items-center justify-content-between'>

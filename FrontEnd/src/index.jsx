@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
+import './react/responsive.css'
 import '@fontsource/ubuntu/300.css'
 import '@fontsource/ubuntu/400.css'
 import '@fontsource/ubuntu/500.css'

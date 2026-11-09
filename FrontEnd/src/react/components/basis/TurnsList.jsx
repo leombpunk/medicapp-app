@@ -11,10 +11,10 @@ const TurnItem = ({ data }) => {
     const navigate = useNavigate()
     const date = new Date(data.dateTime)
     return (
-        <div className='card d-flex flex-row p-0'>
+        <div className='card d-flex flex-row flex-wrap flex-sm-nowrap p-0'>
             <div
-                className={`d-flex flex-column justify-content-center align-items-center py-2 ${isThemeDark ? 'text-light' : 'text-dark'}`}
-                style={{ borderTopLeftRadius: 'inherit', borderBottomLeftRadius: 'inherit', width: '100px', backgroundColor: `${PASTEL_COLORS[date.getDate() % PASTEL_COLORS.length]}90` }}
+                className={`turn-date-column d-flex flex-column justify-content-center align-items-center py-2 text-center ${isThemeDark ? 'text-light' : 'text-dark'}`}
+                style={{ borderTopLeftRadius: 'inherit', borderBottomLeftRadius: 'inherit', backgroundColor: `${PASTEL_COLORS[date.getDate() % PASTEL_COLORS.length]}90` }}
             >
                 <div className='fs-3 fw-bold'>{date.getUTCDate()}</div>
                 <div className='fs-5 fw-bolder text-uppercase'>{monthES[date.getUTCMonth()].slice(0, 3)}</div>

@@ -67,16 +67,16 @@ const Modal = ({ show, title, image, children, handleClose }) => {
                 <>
                     <div className='fade modal-backdrop show'></div>
                     <div className='position-absolute d-flex justify-content-center align-items-center' tabIndex='-1' style={{ top: 0, bottom: 0, left: 0, right: 0 }}>
-                        <div className='card' style={{ zIndex: 1055 }}>
-                            <div className='d-flex flex-row'>
+                        <div className='card' style={{ zIndex: 1055, maxWidth: '100%' }}>
+                            <div className='d-flex flex-row flex-wrap'>
                                 {
                                     image &&
                                     <div>
-                                        <img className='rounded-start-2' src={image} alt='img-preview' loading='lazy' style={{ maxHeight: '500px' }}/>
+                                        <img className='rounded-start-2' src={image} alt='img-preview' loading='lazy' style={{ maxHeight: '500px', maxWidth: '100%' }}/>
                                     </div>
                                 }
 
-                                <div className='card-body' style={{ minWidth: '500px', maxWidth: '500px'}}>
+                                <div className='card-body' style={{ flex: '1 1 auto', minWidth: 0, maxWidth: '500px' }}>
                                     <div>
                                         <div className='mb-3 d-flex align-items-center justify-content-between'>
                                             <h4>{title}</h4>

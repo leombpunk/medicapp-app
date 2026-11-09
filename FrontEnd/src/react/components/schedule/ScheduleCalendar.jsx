@@ -33,7 +33,7 @@ function ScheduleCalendar({ currentDate, goToDate }) {
                 </div>
             </div>
 
-            <div className='card p-2' style={{ height: '298px', minWidth: '350px' }}>
+            <div className='card p-2' style={{ height: '298px', width: '100%', maxWidth: '350px' }}>
                 <div>
                     <div className='d-flex justify-content-around'>
                         {dayES.map((day, index)=> <div key={index} className='calendar-day'>{day.charAt(0)}</div>)}

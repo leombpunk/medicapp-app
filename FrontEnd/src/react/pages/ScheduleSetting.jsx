@@ -70,8 +70,8 @@ const ScheduleSetting = () => {
                         <div className='d-flex flex-column'>
                             {
                                 dayES.map((day, dayIndex) =>
-                                    <div className={`d-flex align-items-center ${dayIndex !== dayES.length - 1 && 'border-bottom'} gap-5`} key={dayIndex} style={{ height: '6.5rem'}}>
-                                        <div className='d-flex justify-content-end text-capitalize' style={{ width: '6rem' }}>{day}</div>
+                                    <div className={`schedule-setting-row d-flex align-items-center ${dayIndex !== dayES.length - 1 && 'border-bottom'}`} key={dayIndex} style={{ height: '6.5rem'}}>
+                                        <div className='schedule-setting-day-label d-flex justify-content-end text-capitalize'>{day}</div>
                                         <div className='d-flex align-items-center gap-3'>
                                             {
                                                 profesional?.worktimes.filter(worktime => worktime.idDay === dayIndex).sort((a, b) => a.startTime > b.startTime ? 1 : -1).map(worktime => 
