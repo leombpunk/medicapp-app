@@ -1,5 +1,10 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require("electron")
+
+// El bundle generado por Vite usa <script type="module">, que Chromium bloquea
+// al cargar la app por file://. Con este flag se permiten los módulos ES.
+app.commandLine.appendSwitch('allow-file-access-from-files')
+
 const path = require("path");
 const url = require('url');
 const { channels } = require('../src/shared/constants');
