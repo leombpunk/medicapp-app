@@ -1,5 +1,5 @@
 import { DataTypes, Op } from 'sequelize'
-import { sequelize } from '../config/mysql.js'
+import { sequelize } from '../config/db.js'
 import Patient from './patient.js'
 import Treatment from './treatment.js'
 

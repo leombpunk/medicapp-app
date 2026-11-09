@@ -2,7 +2,7 @@ import Workday from '../models/workday.js'
 import Worktime from '../models/worktimes.js'
 import User from '../models/user.js'
 import { httpError } from '../helpers/handleErrors.js'
-import { sequelize } from '../config/mysql.js'
+import { sequelize } from '../config/db.js'
 import { matchedData } from 'express-validator'
 import { handleResponse } from '../helpers/handleResponse.js'
 

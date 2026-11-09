@@ -6,7 +6,8 @@ import useCheckIsAuthorized from "./hooks/useCheckIsAuthorized"
 const ProtectedUserRoute = () => {
   const { user } = useUserContext()
   console.log(user)
-  const { loading, isAuthorized } = useCheckIsAuthorized(user['id'])
+  // Guarda obligatoria: `user` es undefined si no hay sesión -> evita el crash `reading 'id'`
+  const { loading, isAuthorized } = useCheckIsAuthorized(user ? user['id'] : undefined)
   console.log(isAuthorized)
 
     //   if (!user) {

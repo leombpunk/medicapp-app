@@ -1,4 +1,4 @@
-import { sequelize } from "../config/mysql.js"
+import { sequelize } from "../config/db.js"
 import { httpError } from "../helpers/handleErrors.js"
 import { handleResponse, handleResponseCustomStatus } from "../helpers/handleResponse.js"
 import Charge from "../models/charge.js"
