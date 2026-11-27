@@ -165,6 +165,16 @@
 
 **Estado:** build de Vite OK. Verificación: a 375px la barra con hamburguesa llega a ambos bordes y las cards quedan dentro del margen; en ≥ 768px la tabla ocupa el ancho completo del contenedor.
 
+### 14. Paginación compacta (máximo 5 botones de página) ✅
+
+**Objetivo:** el paginador renderizaba un botón por cada página; con el listado de 50 por página y muchos registros, la fila de botones se volvía interminable y desbordaba.
+
+| Archivo | Cambio |
+|---|---|
+| `components/basis/Pagination.jsx` | Nueva ventana de páginas `VISIBLE_PAGES = 5`: se muestran hasta 5 botones centrados en la página actual (`start = clamp(page - 2, 1, totalPages - 4)`), sin salirse de los extremos. Si `totalPages <= 5`, se muestran todas. Se mantienen las flechas doble a primera/última página, que siguen funcionando como acceso rápido |
+
+**Estado:** build de Vite OK. Verificación: con más de 5 páginas (p. ej. `/patients` con suficientes registros) el paginador muestra 5 números que se desplazan al cambiar de página; en la primera página muestra 1–5 y en la última, las últimas 5. Aplica a todos los listados que usan el componente compartido (`Pagination`).
+
 ---
 
 ## Pendiente (siguiente iteración)
