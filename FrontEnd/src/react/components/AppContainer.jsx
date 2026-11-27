@@ -9,7 +9,7 @@ const AppContainer = () => {
             <SidebarProvider>
                 <div className='d-flex'>
                     <Sidebar/>
-                    <div className='w-100 vh-100' style={{ overflowY: 'auto' }}>
+                    <div className='w-100 vh-100 app-scroll'>
                         <SidebarMobile/>
                         <div className='container my-4'>
                             <Outlet/>

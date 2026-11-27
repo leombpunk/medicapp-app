@@ -144,7 +144,7 @@ const TableV2 = ({ loading, items, columns, order, handleOrder, tableHeight, isP
     return (
         <>
             {/* --- Tabla: solo >= md (igual a la original) --- */}
-            <div className='table-responsive d-none d-md-block'>
+            <div className='table-responsive w-100 d-none d-md-block'>
                 <table className='table table-striped table-overflow table-hover'>
                     <thead style={{ borderColor: '#00000000' }}>
                         <tr>
@@ -205,7 +205,7 @@ const TableV2 = ({ loading, items, columns, order, handleOrder, tableHeight, isP
             </div>
 
             {/* --- Cards: solo < md (patrón «cards en mobile») --- */}
-            <div className='d-md-none d-flex flex-column gap-2'>
+            <div className='d-md-none d-flex flex-column gap-2 w-100'>
                 {
                     sortableColumns.length > 0 &&
                     <div className='d-flex justify-content-end mb-1'>

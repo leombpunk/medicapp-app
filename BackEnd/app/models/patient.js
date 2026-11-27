@@ -67,7 +67,7 @@ Patient.getByDNI = (dni) => {
 }
 
 Patient.getPage = async ({ search, page, order, idProfesional, idTreatment }) => {
-    const limit = 100
+    const limit = 50
     const offset = limit * (page ? page : 0)
 
     const where = {

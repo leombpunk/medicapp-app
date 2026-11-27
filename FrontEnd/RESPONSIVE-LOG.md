@@ -130,6 +130,41 @@
 
 **Estado:** build de Vite OK. Verificación manual pendiente: en < 768px la búsqueda ocupa una fila, el selector "Profesional" otra, y "Añadir" un botón de bloque; a 768px+ se ve como antes.
 
+### 11. Padding derecho para la barra de desplazamiento ✅
+
+**Objetivo:** en Windows (y navegadores con scrollbar clásica) el scroll vertical de la página se dibuja encima del borde derecho del contenido, tapando parcialmente cards, tablas y botones.
+
+| Archivo | Cambio |
+|---|---|
+| `components/AppContainer.jsx` | El contenedor scrolleable principal: `style={{ overflowY: 'auto' }}` inline → clase `app-scroll` |
+| `react/responsive.css` | Nueva regla `.app-scroll { overflow-y: auto; padding-right: 1.25rem; }` — el `padding-right` de 20px supera el ancho típico de la scrollbar (~15–17px), por lo que el contenido deja de quedar debajo |
+
+**Nota:** 1.25rem cubre scrollbars clásicas; en macOS (scrollbars overlay, que flotan sobre el contenido) simplemente deja un pequeño margen extra a la derecha, sin afectar la usabilidad. Los modales ya estaban a salvo porque `.modal-body` tiene un padding propio mayor que el ancho de la barra.
+
+**Estado:** build de Vite OK. Verificación manual: en una página con scroll vertical (p. ej. `/patients` con varias filas), el borde derecho de las cards/tabla debe quedar libre.
+
+### 12. Padding izquierdo + listado de pacientes limitado a 50 por página ✅
+
+| Archivo | Cambio |
+|---|---|
+| `react/responsive.css` | `.app-scroll` ahora también tiene `padding-left: 1.25rem`, simétrico al derecho (mismo criterio: separar el contenido de los bordes/scrollbar) |
+| `BackEnd/app/models/patient.js` | `Patient.getPage`: `const limit = 100` → `const limit = 50`. `total_pages` se calcula con el mismo `limit`, por lo que la paginación queda coherente (antes: 100 por página; ahora: 50 por página, sin saltos ni registros perdidos) |
+
+**Nota:** el límite se aplicó en el **backend** (no en `TableV2`) porque el listado de `/patients` está paginado en el servidor; recortar en el componente habría mostrado 50 de los 100 devueltos y dejado registros inaccesibles al pasar de página. Afecta a todos los consumidores del endpoint de pacientes (`GET /patients`), incluido el filtro por profesional/tratamiento. El mismo `limit = 100` no se tocó en otros modelos (turns, etc.) por estar fuera del pedido.
+
+**Estado:** build de Vite OK (FrontEnd). Backend: cambio de constante, sin build disponible en este entorno; verificar con `npm run dev` que `/patients` muestra como máximo 50 filas/cards y que el paginador refleja la nueva cantidad de páginas.
+
+### 13. Corrección: cards full-width a 375px + barra móvil sin padding ✅
+
+**Reportado:** (a) a 375px el listado (cards) no respetaba el padding y desbordaba; (b) la barra de navegación móvil quedaba afectada por el padding horizontal y no debía.
+
+| Archivo | Cambio |
+|---|---|
+| `components/basis/TableV2.jsx` | Ambas ramas (tabla y cards) reciben `w-100`. Causa: los wrappers de listado de las páginas (`PatientsIndex`, etc.) usan `flex-column align-items-center`, así que los hijos de `TableV2` no se estiraban: tomaban ancho por contenido y con títulos largos desbordaban el padding/scrollbar |
+| `react/responsive.css` | El padding horizontal se movió de `.app-scroll` a `.app-scroll > .container`: el contenido conserva la separación de bordes/scrollbar, pero `SidebarMobile` (hijo directo de `.app-scroll`) vuelve a ocupar todo el ancho |
+
+**Estado:** build de Vite OK. Verificación: a 375px la barra con hamburguesa llega a ambos bordes y las cards quedan dentro del margen; en ≥ 768px la tabla ocupa el ancho completo del contenedor.
+
 ---
 
 ## Pendiente (siguiente iteración)

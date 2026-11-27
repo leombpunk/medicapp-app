@@ -2,6 +2,20 @@
     --sidebar-width: 15rem;
 }
 
+/* Contenedor scrolleable principal de la app (AppContainer). */
+.app-scroll {
+    overflow-y: auto;
+}
+
+/* El padding horizontal vive en el contenedor de contenido, no en el
+   scrolleable: así la barra de navegación móvil (SidebarMobile, hijo
+   directo de .app-scroll) queda full-bleed, mientras el contenido sigue
+   separado de los bordes y de la barra de desplazamiento vertical. */
+.app-scroll > .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
 /* ================= Breakpoints de Bootstrap (mobile-first) =================
    sm >= 576px | md >= 768px | lg >= 992px | xl >= 1200px
    Los estilos por breakpoint de este proyecto se agregan aquí, en vez de
