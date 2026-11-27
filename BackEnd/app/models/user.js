@@ -220,7 +220,7 @@ User.getByMail = (mail) => {
 User.getByUsernameOrMail = (data) => {
     return User.scope('withPassword').findOne({
         where: {
-            isDeleted: 0, 
+            isDeleted: false, 
             [Op.or]: [
                 {
                     username: data,
