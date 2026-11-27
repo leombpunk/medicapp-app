@@ -20,7 +20,7 @@ const Patient = () => {
                 ? <Loading/>
                 : patient 
                     ? <>
-                            <div className='d-grid gap-4' style={{ gridTemplateColumns: '3fr 2fr'}}>
+                            <div className='d-grid gap-4 patient-detail-grid'>
                                 <div className='d-flex flex-column gap-4'>
                                     <PatientData patient={patient} handleEditPatient={editPatient}/>
                                     <PatientNotes data={patient}/>

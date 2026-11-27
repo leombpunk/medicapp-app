@@ -175,6 +175,29 @@
 
 **Estado:** build de Vite OK. Verificación: con más de 5 páginas (p. ej. `/patients` con suficientes registros) el paginador muestra 5 números que se desplazan al cambiar de página; en la primera página muestra 1–5 y en la última, las últimas 5. Aplica a todos los listados que usan el componente compartido (`Pagination`).
 
+### 15. Detalle de paciente (`/patient/:id`) responsive ✅
+
+**Objetivo:** la ficha del paciente tenía una grilla fija de 2 columnas (`3fr 2fr`) en todos los anchos, formularios con `col` de escritorio, barras de búsqueda sin apilar, tablas legacy (sin patrón cards) y una galería de fotos con 3 columnas y alto fijo.
+
+| Archivo | Cambio |
+|---|---|
+| `pages/Patient.jsx` | La grilla principal pasa de `style={{ gridTemplateColumns: '3fr 2fr' }}` a la clase `patient-detail-grid` |
+| `react/responsive.css` | `.patient-detail-grid`: 1 columna por defecto y `3fr 2fr` desde `>= lg` (992px). En tablets y móviles los bloques se apilan |
+| `components/patient/PatientData.jsx` | El trío DNI / Fecha de nacimiento / Teléfono pasa de `col-lg` (ancho completo hasta lg) a `col-12 col-md-4`; Apellidos/Nombres ya usaban `col-12 col-md-6` y Dirección `col-12` |
+| `components/basis/Title.jsx` | La fila del título suma `flex-wrap` + `gap-2` y el bloque de texto recibe `title-text` (`min-width: 0`), para que títulos largos + botones de acción (Editar, Añadir, Ver más) no desborden en móvil |
+| `components/patient/PatientFiles.jsx` | Barra de búsqueda: `flex-column flex-md-row align-items-stretch align-items-md-center`; botón "Añadir" centrado. Tabla legacy `Table` → `TableV2` (hereda el patrón cards en `< md`) con adaptadores de orden `{column, direction}` ⇄ `{[columna]: 'ASC'\|'DESC'}` |
+| `components/patient/PatientPhotos.jsx` | Misma barra apilable; el grupo lista/iconos se centra en móvil y el botón "Añadir" pasa a ser hijo directo del flex (botón de bloque). `Table` → `TableV2` con los mismos adaptadores |
+| `components/basis/TableV2.jsx` | `tbody` ahora aplica también `height: tableHeight` (como hacía la tabla legacy), para conservar el alto de escritorio en las fichas que lo pasan |
+| `components/basis/ImagesViewer.jsx` | Alto fijo inline → variable CSS `--images-viewer-height`; grilla inline de 3 columnas → clase `images-viewer-grid`; estilos de imagen/placeholder inline → clases |
+| `react/responsive.css` | Galería: 1 columna en `< sm`, 2 en `>= sm`, 3 + 2 filas en `>= md`; alto fijo solo desde `>= md` (en móvil la galería fluye, sin scroll interno); imágenes de 250px → 200px en móvil. Título base 1.5rem → 1.25rem en `< sm` (selectores `.title-text .title` y `.panel .title` para ganar a `App.css`, que se carga después) |
+
+**Notas:**
+- Los adaptadores de orden viven en cada página porque `useFile` expone `order` como `{ column, direction }` (formato que consume el backend), mientras `TableV2` usa el mapa `{ [columna]: ORDER }` que ya emplean el resto de listados.
+- `components/basis/Table.jsx` (tabla legacy) quedó **sin usos** tras migrar Archivos y Fotos; no se elimina en este cambio para no mezclar limpieza con el fix responsive. Puede borrarse en una tarea aparte.
+- La galería en modo iconos mantiene el alto fijo de escritorio (694px) porque `ImagesViewer` recibe `height`; en móvil se anula por media query.
+
+**Estado:** build de Vite OK. Verificación manual pendiente: a 375px la ficha muestra una sola columna, los campos a ancho completo, los títulos con sus botones envueltos, las tablas como cards y la galería a 1 columna; desde 768px se ven 3 columnas de fotos y la tabla; desde 992px vuelve el layout de 2 columnas del escritorio.
+
 ---
 
 ## Pendiente (siguiente iteración)

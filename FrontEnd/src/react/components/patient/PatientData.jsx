@@ -70,7 +70,7 @@ const PatientData = ({ patient, handleEditPatient }) => {
 
             <form className='d-flex flex-column gap-3'>
                 <div className='row'>
-                    <div className='col'>
+                    <div className='col-12 col-md-6'>
                         <InputV2
                             formManager={{ register, errors }}
                             label='Apellidos'
@@ -81,7 +81,7 @@ const PatientData = ({ patient, handleEditPatient }) => {
                         />
                     </div>
 
-                    <div className='col'>
+                    <div className='col-12 col-md-6'>
                         <InputV2
                             formManager={{ register, errors }}
                             label='Nombres'
@@ -94,7 +94,7 @@ const PatientData = ({ patient, handleEditPatient }) => {
                 </div>
 
                 <div className='row'>
-                    <div className='col-lg'>
+                    <div className='col-12 col-md-4'>
                         <InputV2
                             formManager={{ register, errors }}
                             label='DNI'
@@ -105,7 +105,7 @@ const PatientData = ({ patient, handleEditPatient }) => {
                         />
                     </div>
                     
-                    <div className='col-lg'>
+                    <div className='col-12 col-md-4'>
                         <InputV2
                             formManager={{ register, errors }}
                             label='Fecha de Nacimiento'
@@ -116,7 +116,7 @@ const PatientData = ({ patient, handleEditPatient }) => {
                         />
                     </div>
 
-                    <div className='col-lg'>
+                    <div className='col-12 col-md-4'>
                         <InputV2
                             formManager={{ register, errors }}
                             label='Teléfono'
@@ -129,14 +129,16 @@ const PatientData = ({ patient, handleEditPatient }) => {
                 </div>
 
                 <div className='row'>
-                    <InputV2
-                        formManager={{ register, errors }}
-                        label='Dirección'
-                        name='address'
-                        type='text'
-                        placeholder='Dirección del paciente'
-                        disabled={!editMode}
-                    />
+                    <div className='col-12'>
+                        <InputV2
+                            formManager={{ register, errors }}
+                            label='Dirección'
+                            name='address'
+                            type='text'
+                            placeholder='Dirección del paciente'
+                            disabled={!editMode}
+                        />
+                    </div>
                 </div>
             </form>
         </div>

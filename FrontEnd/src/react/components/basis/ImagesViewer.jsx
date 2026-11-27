@@ -35,10 +35,9 @@ const Image = ({ photo, columns, handleOnPress }) => {
             {
                 //photo.image
                 image
-                ? <img className='card-img-top' src={image} alt={photo.name} style={{ objectFit: 'cover', width: '100%', height: '250px'}}/>
+                ? <img className='card-img-top images-viewer-image' src={image} alt={photo.name}/>
                 : <div
-                    className='d-flex justify-content-center align-items-center bg-secondary'
-                    style={{ width: '100%', height: '250px', borderTopLeftRadius: 'inherit', borderTopRightRadius: 'inherit' }}
+                    className='d-flex justify-content-center align-items-center bg-secondary images-viewer-placeholder'
                 >
                     <PhotoIcon style={imageIcon}/>
                 </div>
@@ -58,11 +57,11 @@ const Image = ({ photo, columns, handleOnPress }) => {
 
 const ImagesViewer = ({ items, columns, height, handleOnPress, addFileURL }) => {
     return (
-        <div className='card w-100' style={{ height, background: 'rgba(0,0,0,0.05)' }}>
+        <div className='card w-100 images-viewer' style={{ '--images-viewer-height': height, background: 'rgba(0,0,0,0.05)' }}>
             {
                 items.length 
                 //? <div className='card-body d-flex flex-wrap align-items-baseline gap-3 overflow-auto'>
-                ? <div className='card-body d-grid gap-3 overflow-auto' style={{ gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '1fr 1fr' }}>
+                ? <div className='card-body d-grid gap-3 overflow-auto images-viewer-grid'>
                     {
                         items.map((photo) => 
                             <Image

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/24/solid'
 import { Bars3Icon, PhotoIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
-import { SearchBar, Table, Pagination } from '../basis'
+import { SearchBar, TableV2, Pagination } from '../basis'
 import useFile from '../hooks/useFile'
 import useFileModal from './modals/useFileModal'
 import ImagesViewer from '../basis/ImagesViewer'
@@ -64,6 +64,12 @@ const PatientPhotos = ({ patient }) => {
         handleClosePreview()
     }
 
+    // `useFile` maneja el orden como { column, direction }, mientras que
+    // `TableV2` lo espera como { [columna]: 'ASC' | 'DESC' } y notifica
+    // handleOrder(columna, valor). Estos adaptadores unen ambos formatos.
+    const tableOrder = { [order.column]: order.direction }
+    const handleTableOrder = (column, direction) => handleOrder({ column, direction })
+
     return (
         <div className='d-flex flex-column gap-4'>
 
@@ -77,10 +83,10 @@ const PatientPhotos = ({ patient }) => {
             </div>
 
             <div className='d-flex flex-column align-items-center gap-4'>
-                <div className='d-flex align-items-center gap-3 w-100'>
+                <div className='d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3 w-100'>
                     <SearchBar placeholder='Buscar archivo...' handleSearch={handleSearch}/>
                     
-                    <div className='d-flex'>
+                    <div className='d-flex justify-content-center justify-content-md-start'>
                         <button
                             type='button'
                             className={`btn btn-outline-system  rounded-end-0 ${viewerMode ? '' : 'active'} d-flex justify-content-center align-items-center`}
@@ -102,16 +108,14 @@ const PatientPhotos = ({ patient }) => {
                         </button>
                     </div>
 
-                    <div>
-                        <button type='button' className='btn btn-outline-primary width-auto' onClick={handleOpen}>
-                            <div className='d-flex align-items-center gap-1'>
-                                <PlusIcon style={{ width: '1.25rem' }}/>
-                                <div>
-                                    Añadir
-                                </div>
+                    <button type='button' className='btn btn-outline-primary width-auto' onClick={handleOpen}>
+                        <div className='d-flex align-items-center justify-content-center gap-1'>
+                            <PlusIcon style={{ width: '1.25rem' }}/>
+                            <div>
+                                Añadir
                             </div>
-                        </button>
-                    </div>
+                        </div>
+                    </button>
                 </div>
 
                 {
@@ -129,7 +133,7 @@ const PatientPhotos = ({ patient }) => {
                         height={`694px`}
                         handleOnPress={handleOpenPreview}
                     />
-                    : <Table
+                    : <TableV2
                         loading={loading}
                         items={files}
                         columns={[
@@ -139,8 +143,8 @@ const PatientPhotos = ({ patient }) => {
                             { name: 'Última modificación', key:'updatedAt', ordered: true },
                             //{ name: '', key:'buttons', ordered: false },
                         ]}
-                        order={order}
-                        handleOrder={handleOrder}
+                        order={tableOrder}
+                        handleOrder={handleTableOrder}
                         isPressable={true}
                         handleOnPress={handleOpenPreview}
                         tableHeight={`635px`}

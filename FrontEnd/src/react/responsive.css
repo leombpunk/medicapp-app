@@ -97,3 +97,80 @@
     }
 }
 
+/* --- Detalle de paciente (/patient/:id) ------------------------------------
+   Escritorio: dos columnas (datos/fotos/archivos | turnos/tratamientos).
+   < lg: una sola columna, para que nada quede comprimido en tablets y móviles. */
+.patient-detail-grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+    .patient-detail-grid {
+        grid-template-columns: 3fr 2fr;
+    }
+}
+
+/* Título de sección: permite que el texto encoja/envolva cuando comparte
+   fila con botones de acción (Editar, Añadir, Ver más) en pantallas chicas. */
+.title-text {
+    min-width: 0;
+}
+
+/* Galería de fotos: grilla fluida (1 columna en móvil, 2 en sm, 3 desde md).
+   El alto fijo de escritorio se desactiva en móvil para que la galería fluya
+   con el contenido en vez de generar un scroll interno diminuto. */
+.images-viewer {
+    height: var(--images-viewer-height, auto);
+}
+
+.images-viewer-grid {
+    grid-template-columns: 1fr;
+}
+
+.images-viewer-image {
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+
+.images-viewer-placeholder {
+    width: 100%;
+    height: 250px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+@media (min-width: 576px) {
+    .images-viewer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .images-viewer-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .images-viewer {
+        height: auto;
+    }
+
+    .images-viewer-image,
+    .images-viewer-placeholder {
+        height: 200px;
+    }
+}
+
+/* El título base (1.5rem, App.css) desborda junto a botones en móviles.
+   Selector con más especificidad para ganar a App.css, que se carga después. */
+@media (max-width: 575.98px) {
+    .title-text .title,
+    .panel .title {
+        font-size: 1.25rem;
+    }
+}
+
+

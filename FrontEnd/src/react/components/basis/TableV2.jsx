@@ -162,7 +162,7 @@ const TableV2 = ({ loading, items, columns, order, handleOrder, tableHeight, isP
                         </tr>
                     </thead>
                     {
-                        <tbody className='border rounded-2' style={{ maxHeight: tableHeight }}>
+                        <tbody className='border rounded-2' style={{ maxHeight: tableHeight, height: tableHeight }}>
                             {
                                 loading ?
                                     <tr className='h-100'>

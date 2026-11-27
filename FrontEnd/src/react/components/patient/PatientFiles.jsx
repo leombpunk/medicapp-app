@@ -1,6 +1,6 @@
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { SearchBar, Table, Pagination } from "../basis";
+import { SearchBar, TableV2, Pagination } from "../basis";
 import useFileModal from "./modals/useFileModal";
 import useFile from "../hooks/useFile";
 import FileModalPreview from "./modals/FileModalPreview";
@@ -50,6 +50,12 @@ const PatientFiles = ({ patient }) => {
         handleOpenDeleteMode(data)
         handleClosePreview()
     }
+
+    // `useFile` maneja el orden como { column, direction }, mientras que
+    // `TableV2` lo espera como { [columna]: 'ASC' | 'DESC' } y notifica
+    // handleOrder(columna, valor). Estos adaptadores unen ambos formatos.
+    const tableOrder = { [order.column]: order.direction }
+    const handleTableOrder = (column, direction) => handleOrder({ column, direction })
     
     return (
         <div className="d-flex flex-column gap-4">
@@ -70,11 +76,11 @@ const PatientFiles = ({ patient }) => {
 
             <div className="d-flex flex-column align-items-center gap-4">
 
-                <div className='d-flex align-items-center gap-3 w-100'>
+                <div className='d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3 w-100'>
                     <SearchBar placeholder='Buscar archivo...' handleSearch={handleSearch}/>
 
                     <button type="button" className="btn btn-outline-primary width-auto" onClick={handleOpen}>
-                        <div className="d-flex align-items-center gap-1">
+                        <div className="d-flex align-items-center justify-content-center gap-1">
                             <PlusIcon style={{width: '1.25rem', height:'1.25rem'}}/>
                             <div>
                                 Añadir
@@ -83,7 +89,7 @@ const PatientFiles = ({ patient }) => {
                     </button>
                 </div>
 
-                <Table
+                <TableV2
                     loading={loading}
                     items={files}
                     columns={[
@@ -93,8 +99,8 @@ const PatientFiles = ({ patient }) => {
                         { name: "Última modificación", key:"updatedAt", ordered: true },
                         //{ name: "", key:"buttons", ordered: false },
                     ]}
-                    order={order}
-                    handleOrder={handleOrder}
+                    order={tableOrder}
+                    handleOrder={handleTableOrder}
                     isPressable={true}
                     handleOnPress={handleOpenPreview}
                     tableHeight={`635px`}

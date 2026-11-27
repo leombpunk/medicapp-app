@@ -150,6 +150,14 @@ Es la pantalla más relevante. Estrategia conservadora (no reescribir la grilla 
 - `ScheduleSetting.jsx`: etiqueta de día `width: '6rem'` + `gap-5` → reducir a `gap-2`/`gap-3` en `< md`.
 - `PatientTreatments.jsx` / similares: son contenedores flexibles (`flex-column`), **no requieren cambios**.
 
+#### 3.8 Detalle de paciente (`/patient/:id`) ✅ *Implementado* (ver sección 15 del log)
+- Grilla principal `3fr 2fr` inline → clase `.patient-detail-grid`: 1 columna y `3fr 2fr` recién desde `>= lg`.
+- Formulario de datos: `col`/`col-lg` de escritorio → `col-12 col-md-6` y `col-12 col-md-4`.
+- `Title`: `flex-wrap` + `text` con `min-width: 0`, para que el título y sus botones no desborden.
+- Barras de búsqueda de Archivos/Fotos: apiladas en `< md`, igual que `/patients`.
+- Tablas legacy (`Table`) de Archivos y Fotos → `TableV2` (cards en `< md`), con adaptador de orden `{column, direction}` ⇄ `{[columna]: 'ASC'|'DESC'}`.
+- `ImagesViewer`: grilla 1/2/3 columnas según breakpoint y alto fijo solo desde `>= md`.
+
 ### P3 — Higiene general
 
 - Añadir **clases utilitarias propias** en `index.css` (sin tocar Bootstrap): `.w-10/.w-20/.w-80/.w-90` ya existen; podrían agregarse `.w-md-…` (ver prefijos de breakpoint de Bootstrap para coherencia: `d-md-none`, `col-md-6`).
