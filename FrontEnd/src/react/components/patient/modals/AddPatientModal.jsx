@@ -58,7 +58,7 @@ const AddPatientModal = ({ handleAddPatient }) => {
     return (
         <>
             <button className='btn btn-outline-primary width-auto' onClick={customHandleOpen}>
-                <div className='d-flex align-items-center gap-1'>
+                <div className='d-flex align-items-center justify-content-center gap-1'>
                     <PlusIcon style={{width: '1.25rem', height:'1.25rem'}}/>
                     <div>
                         Añadir

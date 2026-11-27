@@ -117,6 +117,19 @@
 
 **Estado:** build de Vite OK. Pendiente verificación manual (ver Pendiente). La personalización del título es opt-in vía `cardHighlight`; las configs existentes heredan el default genérico sin tocar nada.
 
+### 10. Barra de búsqueda de `/patients` responsive ✅
+
+**Objetivo:** la fila con buscador + selector de profesional + botón "Añadir" desbordaba en móvil: `SearchBar` y `AutoComplete` son `input-group` (ancho 100%) y los prefijos fijos ("Buscar", "Profesional") no encogen, por lo que comprimir la fila no era viable.
+
+| Archivo | Cambio |
+|---|---|
+| `pages/PatientsIndex.jsx` | Fila de búsqueda: `d-flex align-items-center gap-3` → `d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3`. En < md cada control va en su propia fila a todo el ancho (incluido el botón "Añadir"); en >= md la fila queda idéntica a la anterior |
+| `components/patient/modals/AddPatientModal.jsx` | El contenido del botón "Añadir" suma `justify-content-center`: como en móvil el botón se estira a todo el ancho, el ícono + texto quedan centrados (en desktop, al ser ancho por contenido, no cambia nada) |
+
+**Nota:** no se agregó CSS nuevo; se resolvió con utilidades responsive de Bootstrap y la dirección de flex cambia solo con `flex-md-row` + `align-items-md-center`. El dropdown del autocomplete sigue posicionándose `left:0 right:0` sobre su propio control, por lo que al ocupar todo el ancho en móvil el listado también.
+
+**Estado:** build de Vite OK. Verificación manual pendiente: en < 768px la búsqueda ocupa una fila, el selector "Profesional" otra, y "Añadir" un botón de bloque; a 768px+ se ve como antes.
+
 ---
 
 ## Pendiente (siguiente iteración)

@@ -38,7 +38,7 @@ const PatientsIndex = () => {
         <>
             <div className='d-flex flex-column gap-4'>
 
-                <div className='d-flex align-items-center gap-3 w-100'>
+                <div className='d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3 w-100'>
                     <SearchBar placeholder='Buscar pacientes por nombre o DNI' handleSearch={handleSearch}/>
 
                     <AutoComplete
