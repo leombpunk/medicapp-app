@@ -53,7 +53,7 @@ const PatientsIndex = () => {
                     <AddPatientModal patients={patients} handleAddPatient={addPatient} handlePatients={null}/>
                 </div>
 
-                <div className='flex-grow-1 d-flex flex-column align-items-center justify-content-between gap-4'>
+                <div className='flex-grow-1 d-flex flex-column align-items-center justify-content-between gap-4 w-100'>
                     <TableV2
                         loading={loading}
                         items={patients}
