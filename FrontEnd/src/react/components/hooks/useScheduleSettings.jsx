@@ -23,7 +23,7 @@ const useScheduleSettings = () => {
     const [totalPages, setTotalPages] = useState(1)
     const [order, setOrder] = useState({column: "id", direction: "DESC"})
     const [search, setSearch] = useState("")
-    const [settings, setSettings] = useState("")
+    const [settings, setSettings] = useState([])
 
     const handleSearch = (value) => {
         setSearch(value)
