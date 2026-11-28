@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv"
 import { Sequelize } from "sequelize"
-import mysql2 from "mysql2"
-import postgresModule from 'pg-hstore'
+// import mysql2 from "mysql2"
+import pg from 'pg'
 
 dotenv.config()
 // Las siguientes datos los extrae de leer el archivo .env
@@ -21,7 +21,7 @@ const sequelize = new Sequelize(
         host: hostname,
         port: dbport, //for deploy
         dialect: dialect, 
-        // dialectModule: postgresModule,
+        dialectModule: pg,
     }
 )
 
