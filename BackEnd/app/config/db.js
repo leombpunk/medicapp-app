@@ -22,6 +22,18 @@ const sequelize = new Sequelize(
         port: dbport, //for deploy
         dialect: dialect, 
         dialectModule: pg,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            }
+        },
+        pool: {
+            max: 2,
+            min: 0,
+            idle: 0,
+            acquire: 30000,
+        },
     }
 )
 
