@@ -15,8 +15,7 @@ const Profesional = () => {
                 loading                    
                 ? <Loading/>
                 : profesional 
-                    ? <div className='container'>
-                        <div className='d-grid gap-5' style={{ gridTemplateColumns: '3fr 2fr'}}>
+                    ? <div className='d-grid gap-4 patient-detail-grid'>
                             <div className='d-flex flex-column gap-4'>
                                 <ProfesionalData profesional={profesional}/>
 
@@ -28,11 +27,10 @@ const Profesional = () => {
                                 <ProfesionalTreatments profesional={profesional}/>
                             </div>
 
-                            <div>
+                            <div className='d-flex flex-column gap-4'>
                                 <ProfesionalPatients profesional={profesional}/>
                             </div>
                         </div>
-                    </div>
                     : <NotFoundPage/>
             }
         </>
